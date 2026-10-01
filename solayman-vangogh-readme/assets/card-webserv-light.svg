@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 210" width="320" height="210">
+  <defs>
+    <linearGradient id="cbg4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F5F8F2"/>
+      <stop offset="0.7" stop-color="#EDF2E9"/>
+      <stop offset="1" stop-color="#F0F5EE"/>
+    </linearGradient>
+    <clipPath id="cclip4"><rect x="1" y="1" width="318" height="80" rx="10"/></clipPath>
+  </defs>
+
+  <!-- Card background -->
+  <rect width="320" height="210" rx="10" fill="url(#cbg4)" stroke="#2D6B77" stroke-width="0.8" opacity="0.9"/>
+
+  <!-- Pattern area (clipped) -->
+  <g clip-path="url(#cclip4)">
+  <circle cx="50" cy="40" r="3" fill="#3B7A8C" opacity="0.2"/>
+  <circle cx="50" cy="40" r="6" fill="none" stroke="#3B7A8C" stroke-width="0.4" opacity="0.12"/>
+  <circle cx="120.0" cy="25" r="3" fill="#3B7A8C" opacity="0.2"/>
+  <circle cx="120.0" cy="25" r="6" fill="none" stroke="#3B7A8C" stroke-width="0.4" opacity="0.12"/>
+  <circle cx="200.0" cy="25" r="3" fill="#3B7A8C" opacity="0.2"/>
+  <circle cx="200.0" cy="25" r="6" fill="none" stroke="#3B7A8C" stroke-width="0.4" opacity="0.12"/>
+  <circle cx="270" cy="40" r="3" fill="#3B7A8C" opacity="0.2"/>
+  <circle cx="270" cy="40" r="6" fill="none" stroke="#3B7A8C" stroke-width="0.4" opacity="0.12"/>
+  <circle cx="160.0" cy="55" r="3" fill="#3B7A8C" opacity="0.2"/>
+  <circle cx="160.0" cy="55" r="6" fill="none" stroke="#3B7A8C" stroke-width="0.4" opacity="0.12"/>
+  <circle cx="80" cy="65" r="3" fill="#3B7A8C" opacity="0.2"/>
+  <circle cx="80" cy="65" r="6" fill="none" stroke="#3B7A8C" stroke-width="0.4" opacity="0.12"/>
+  <circle cx="240" cy="65" r="3" fill="#3B7A8C" opacity="0.2"/>
+  <circle cx="240" cy="65" r="6" fill="none" stroke="#3B7A8C" stroke-width="0.4" opacity="0.12"/>
+  <line x1="50" y1="40" x2="120.0" y2="25" stroke="#3B7A8C" stroke-width="0.6" opacity="0.15"/>
+  <line x1="120.0" y1="25" x2="200.0" y2="25" stroke="#3B7A8C" stroke-width="0.6" opacity="0.15"/>
+  <line x1="200.0" y1="25" x2="270" y2="40" stroke="#3B7A8C" stroke-width="0.6" opacity="0.15"/>
+  <line x1="120.0" y1="25" x2="160.0" y2="55" stroke="#3B7A8C" stroke-width="0.6" opacity="0.15"/>
+  <line x1="200.0" y1="25" x2="160.0" y2="55" stroke="#3B7A8C" stroke-width="0.6" opacity="0.15"/>
+  <line x1="160.0" y1="55" x2="80" y2="65" stroke="#3B7A8C" stroke-width="0.6" opacity="0.15"/>
+  <line x1="160.0" y1="55" x2="240" y2="65" stroke="#3B7A8C" stroke-width="0.6" opacity="0.15"/>
+  </g>
+
+  <!-- Divider -->
+  <line x1="20" y1="85" x2="300" y2="85" stroke="#2D6B77" stroke-width="0.4" opacity="0.2"/>
+
+  <!-- Project number -->
+  <text x="20" y="108" fill="#3B7A8C" font-family="'JetBrains Mono',monospace" font-size="9" font-weight="400" opacity="0.5">PROJECT 04</text>
+
+  <!-- Project name -->
+  <text x="20" y="130" fill="#1A2F35" font-family="'Segoe UI','SF Pro Display','Helvetica Neue',sans-serif" font-size="15" font-weight="700">Webserv</text>
+
+  <!-- Description -->
+  <text x="20" y="152" fill="#5A7A7F" font-family="'Segoe UI',sans-serif" font-size="10" font-weight="300">C++98 HTTP server built from scratch.</text>
+  <text x="20" y="166" fill="#5A7A7F" font-family="'Segoe UI',sans-serif" font-size="10" font-weight="300"></text>
+
+  <!-- Tags -->
+  <text x="20" y="194" fill="#8A7030" font-family="'JetBrains Mono',monospace" font-size="9" font-weight="500" opacity="0.7">C++98 · Networking</text>
+</svg>

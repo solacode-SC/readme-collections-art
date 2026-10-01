@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 60" width="900" height="60" font-family="'JetBrains Mono','SF Mono',SFMono-Regular,Consolas,Menlo,monospace"><style>
+.spin{transform-box:fill-box;transform-origin:center;animation:spin 70s linear infinite}
+.spin.r{animation-direction:reverse;animation-duration:95s}
+@keyframes spin{to{transform:rotate(360deg)}}
+.dots{stroke-dasharray:.1 34;stroke-linecap:round;animation:run 18s linear infinite}
+@keyframes run{to{stroke-dashoffset:-341}}
+.pulse{animation:pulse 10s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
+@media (prefers-reduced-motion:reduce){.spin,.dots,.pulse{animation:none}}
+</style><defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbf7ea"/><stop offset="1" stop-color="#efe8d2"/></linearGradient>
+<linearGradient id="side" x1="0" x2="1"><stop offset="0" stop-color="#fbf7ea"/><stop offset=".35" stop-color="#fbf7ea" stop-opacity=".96"/><stop offset="1" stop-color="#fbf7ea" stop-opacity="0"/></linearGradient>
+</defs><rect width="900" height="60" fill="url(#bg)"/><path d="M61.4 34L61.4 34.3L61.4 34.7L61.3 35.1L61.1 35.4L60.8 35.7L60.4 36L60 36.1L59.5 36.2L59 36.1L58.4 35.9L58 35.6L57.5 35.2L57.2 34.6L57.1 34L57 33.3L57.2 32.6L57.5 31.9L57.9 31.3L58.5 30.8L59.2 30.4L60.1 30.3L60.9 30.2L61.8 30.4L62.6 30.8L63.3 31.4L63.9 32.2L64.3 33.1L64.5 34.1L64.5 35.1L64.3 36.2L63.8 37.1L63 38L62.1 38.7L61 39.1L59.9 39.3L58.7 39.3L57.5 39L56.3 38.4L55.4 37.5L54.6 36.4L54.1 35.2L53.9 33.8L53.9 32.4L54.3 31.1L55.1 29.8L56 28.7L57.3 27.9L58.7 27.3L60.2 27.1L61.8 27.2L63.3 27.6L64.7 28.5L65.9 29.6L66.9 31L67.5 32.6L67.7 34.3L67.6 36L67 37.7L66.1 39.3L64.9 40.6L63.3 41.6L61.5 42.3L59.6 42.5L57.7 42.4L55.9 41.7L54.2 40.7L52.7 39.3" fill="none" stroke="#96640a" stroke-width="1.5"/><text x="82" y="38" font-size="12" letter-spacing="2.2" fill="#58797c">04 /</text><text x="126" y="38" font-size="12" font-weight="700" letter-spacing="2.2" fill="#12343a">SELECTED PROJECTS</text><path d="M.5 0V60M899.5 0V60" stroke="#c3d2c6"/></svg>
