@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 40" width="150" height="40" font-family="'JetBrains Mono','SF Mono',SFMono-Regular,Consolas,Menlo,monospace"><style>
+.spin{transform-box:fill-box;transform-origin:center;animation:spin 90s linear infinite}
+.spin.r{animation-direction:reverse;animation-duration:140s}
+.spin.f{animation-duration:46s}
+@keyframes spin{to{transform:rotate(360deg)}}
+.tw{transform-box:fill-box;transform-origin:center;animation:tw 4s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.25;transform:scale(.6)}50%{opacity:1;transform:scale(1.15)}}
+.glow{animation:glow 5s ease-in-out infinite}
+@keyframes glow{0%,100%{opacity:.45}50%{opacity:1}}
+.flick{animation:fl 2.8s ease-in-out infinite}
+@keyframes fl{0%,100%{opacity:.7}30%{opacity:1}55%{opacity:.55}80%{opacity:.95}}
+.ff{animation:ff linear infinite;opacity:0}
+@keyframes ff{0%{opacity:0;transform:translate(0,0)}15%{opacity:1}85%{opacity:.9}100%{opacity:0;transform:translate(16px,-80px)}}
+.fall{animation:fall linear infinite}
+@keyframes fall{from{transform:translateY(-30px)}to{transform:translateY(520px)}}
+.sway{transform-box:fill-box;transform-origin:center;animation:sway ease-in-out infinite alternate}
+@keyframes sway{from{transform:translateX(-22px) rotate(-40deg)}to{transform:translateX(22px) rotate(40deg)}}
+.breathe{transform-box:fill-box;transform-origin:center;animation:br 30s ease-in-out infinite alternate}
+@keyframes br{from{transform:scale(1)}to{transform:scale(1.08)}}
+.dots{stroke-dasharray:.1 16;stroke-linecap:round;animation:run 12s linear infinite}
+@keyframes run{to{stroke-dashoffset:-161}}
+.cursor{animation:cur 1.1s steps(1) infinite}
+@keyframes cur{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.spin,.tw,.glow,.flick,.ff,.fall,.sway,.breathe,.dots,.cursor{animation:none}.ff{opacity:.6}}
+</style><rect x=".75" y=".75" width="148.5" height="38.5" rx="19" fill="#ffffff" stroke="#d6502b" stroke-opacity=".85"/><path class="tw" d="M26 13Q26 20 33 20Q26 20 26 27Q26 20 19 20Q26 20 26 13Z" fill="#d6502b" opacity="1" style="animation-delay:-1.0s;animation-duration:4.0s"/><text x="44" y="24.5" font-size="12" letter-spacing="1.2" fill="#0f1a66">GITHUB</text></svg>
