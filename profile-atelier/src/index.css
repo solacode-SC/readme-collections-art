@@ -1,0 +1,990 @@
+/* ===================================================================
+   Profile Atelier — Notion-Inspired Design System
+   =================================================================== */
+
+:root {
+  /* Colors — Notion palette */
+  --bg: #ffffff;
+  --bg-secondary: #fbfbfa;
+  --bg-tertiary: #f7f6f3;
+  --bg-hover: #efefef;
+  --bg-active: #e3e2de;
+  --border: #e3e2de;
+  --border-light: #ebebea;
+
+  --text-primary: #37352f;
+  --text-secondary: #787774;
+  --text-tertiary: #9b9a97;
+  --text-inverse: #ffffff;
+
+  --accent: #2eaadc;
+  --accent-hover: #2590bb;
+  --accent-soft: rgba(46, 170, 220, 0.08);
+  --red: #eb5757;
+  --red-soft: rgba(235, 87, 87, 0.08);
+  --green: #4dab5c;
+  --yellow: #cb912f;
+  --blue: #529cca;
+
+  /* Typography */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif;
+  --font-mono: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace;
+  --font-serif: Lyon-Text, Georgia, "Times New Roman", serif;
+
+  /* Layout */
+  --sidebar-w: 260px;
+  --editor-w: 360px;
+  --header-h: 52px;
+  --footer-h: 48px;
+
+  /* Radius */
+  --radius-xs: 3px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+
+  /* Shadows — Notion-style */
+  --shadow-sm: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px,
+               rgba(15, 15, 15, 0.1) 0px 3px 6px;
+  --shadow-md: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px,
+               rgba(15, 15, 15, 0.1) 0px 5px 10px,
+               rgba(15, 15, 15, 0.2) 0px 15px 40px;
+  --shadow-lg: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px,
+               rgba(15, 15, 15, 0.1) 0px 9px 24px;
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-fast: 120ms var(--ease-out);
+  --transition: 200ms var(--ease-out);
+}
+
+/* ---- Reset ---- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  height: 100vh;
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Scrollbars — Notion style ---- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-active);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+/* ===================================================================
+   Typography
+   =================================================================== */
+
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  user-select: none;
+}
+
+.block-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.caption {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* ===================================================================
+   Layout — App Shell
+   =================================================================== */
+
+.app-header {
+  height: var(--header-h);
+  min-height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  z-index: 20;
+  gap: 12px;
+}
+
+.app-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.app-header__brand-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, #37352f, #787774);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.app-header__toggles {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn--panel-inactive {
+  opacity: 0.55;
+  background: var(--bg-hover) !important;
+  color: var(--text-tertiary) !important;
+}
+
+.app-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Main body */
+.app-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  width: var(--sidebar-w);
+  min-width: var(--sidebar-w);
+  border-right: 1px solid var(--border);
+  background: var(--bg-secondary);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: width var(--transition), min-width var(--transition), opacity var(--transition-fast);
+}
+
+.sidebar--collapsed {
+  width: 0 !important;
+  min-width: 0 !important;
+  border-right: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.sidebar__header {
+  padding: 12px 12px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar__search {
+  width: 100%;
+  height: 28px;
+  padding: 0 8px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-family: var(--font-sans);
+  outline: none;
+  transition: background var(--transition-fast);
+}
+
+.sidebar__search:focus {
+  background: var(--bg);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+.sidebar__search::placeholder {
+  color: var(--text-tertiary);
+}
+
+.sidebar__list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px 8px 12px;
+}
+
+.sidebar__count {
+  padding: 8px 8px 6px;
+}
+
+/* Preview panel */
+.preview-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.preview-panel__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border-light);
+  gap: 12px;
+  flex-wrap: wrap;
+  min-height: 44px;
+}
+
+.preview-panel__toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.preview-panel__content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Editor panel */
+.editor-panel {
+  width: var(--editor-w);
+  min-width: var(--editor-w);
+  border-left: 1px solid var(--border);
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: width var(--transition), min-width var(--transition), opacity var(--transition-fast);
+}
+
+.editor-panel--collapsed {
+  width: 0 !important;
+  min-width: 0 !important;
+  border-left: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.editor-panel__header {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.editor-panel__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+/* Footer bar */
+.app-footer {
+  height: var(--footer-h);
+  min-height: var(--footer-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-top: 1px solid var(--border);
+  background: var(--bg-secondary);
+  gap: 16px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.app-footer__group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ===================================================================
+   Mobile tabs
+   =================================================================== */
+
+.mobile-tabs {
+  display: none;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  overflow-x: auto;
+}
+
+.mobile-tabs__list {
+  display: flex;
+  list-style: none;
+  min-width: min-content;
+}
+
+.mobile-tabs__tab {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  text-align: center;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.mobile-tabs__tab:hover {
+  color: var(--text-primary);
+}
+
+.mobile-tabs__tab--active {
+  color: var(--text-primary);
+  border-bottom-color: var(--text-primary);
+}
+
+/* ===================================================================
+   Components — Style Card (Gallery)
+   =================================================================== */
+
+.style-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  user-select: none;
+}
+
+.style-card:hover {
+  background: var(--bg-hover);
+}
+
+.style-card--active {
+  background: var(--accent-soft);
+}
+
+.style-card--active:hover {
+  background: var(--accent-soft);
+}
+
+.style-card__swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.style-card__swatch-dots {
+  display: flex;
+  gap: 2px;
+  flex-wrap: wrap;
+  width: 20px;
+  justify-content: center;
+}
+
+.style-card__swatch-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.style-card__info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.style-card__name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.style-card__meta {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ===================================================================
+   Components — Keyword pills
+   =================================================================== */
+
+.keywords-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 8px 0;
+}
+
+.keyword-pill {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 999px;
+  border: none;
+  font-size: 11px;
+  font-family: var(--font-sans);
+  color: var(--text-secondary);
+  background: var(--bg-hover);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.keyword-pill:hover {
+  background: var(--bg-active);
+  color: var(--text-primary);
+}
+
+.keyword-pill--active {
+  background: var(--text-primary);
+  color: var(--text-inverse);
+}
+
+.keyword-pill--active:hover {
+  background: var(--text-primary);
+  color: var(--text-inverse);
+}
+
+/* ===================================================================
+   Components — Toggle / Segmented control
+   =================================================================== */
+
+.segmented {
+  display: inline-flex;
+  align-items: center;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+  gap: 1px;
+}
+
+.segmented__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 26px;
+  padding: 0 10px;
+  border: none;
+  border-radius: var(--radius-xs);
+  font-size: 12px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.segmented__btn:hover {
+  color: var(--text-primary);
+}
+
+.segmented__btn--active {
+  background: var(--bg);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ===================================================================
+   Components — Buttons
+   =================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: background var(--transition-fast), opacity var(--transition-fast);
+  white-space: nowrap;
+  border: none;
+  user-select: none;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: white;
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.btn--secondary {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+.btn--secondary:hover:not(:disabled) {
+  background: var(--bg-hover);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.btn--sm {
+  height: 28px;
+  padding: 0 8px;
+  font-size: 12px;
+}
+
+.btn--danger {
+  color: var(--red);
+  background: var(--red-soft);
+}
+
+.btn--danger:hover:not(:disabled) {
+  background: rgba(235, 87, 87, 0.15);
+}
+
+/* ===================================================================
+   Components — Form Fields (Notion-style)
+   =================================================================== */
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.form-section + .form-section {
+  margin-top: 20px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-field + .form-field {
+  margin-top: 8px;
+}
+
+.form-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-label__badge {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--red);
+  background: var(--red-soft);
+  padding: 1px 5px;
+  border-radius: var(--radius-xs);
+}
+
+.input {
+  width: 100%;
+  height: 32px;
+  padding: 0 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--text-primary);
+  font-size: 13px;
+  font-family: var(--font-sans);
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.input:hover {
+  border-color: var(--bg-active);
+}
+
+.input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+
+.input::placeholder {
+  color: var(--text-tertiary);
+}
+
+textarea.input {
+  height: auto;
+  min-height: 64px;
+  padding: 6px 8px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+/* ===================================================================
+   Components — Divider
+   =================================================================== */
+
+.divider {
+  height: 1px;
+  background: var(--border-light);
+  border: none;
+  margin: 16px 0;
+}
+
+/* ===================================================================
+   Components — Project card (editor)
+   =================================================================== */
+
+.project-card {
+  padding: 10px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.project-card + .project-card {
+  margin-top: 8px;
+}
+
+.project-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.project-card__title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.project-card__remove {
+  background: none;
+  border: none;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 2px 4px;
+  border-radius: var(--radius-xs);
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.project-card__remove:hover {
+  color: var(--red);
+  background: var(--red-soft);
+}
+
+/* ===================================================================
+   Components — Weight gauge
+   =================================================================== */
+
+.weight-gauge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.weight-gauge__bar-wrap {
+  width: 80px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--bg-hover);
+  overflow: hidden;
+}
+
+.weight-gauge__bar {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--text-primary);
+  transition: width var(--transition);
+}
+
+.weight-gauge__label {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+}
+
+/* ===================================================================
+   Components — Cat mascot (compact)
+   =================================================================== */
+
+.cat-mascot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cat-mascot__label {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+/* ===================================================================
+   Components — Palette display
+   =================================================================== */
+
+.palette {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.palette__dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+/* ===================================================================
+   Components — Color indicator row
+   =================================================================== */
+
+.color-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.color-row__swatch {
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border);
+}
+
+.color-row__hex {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  color: var(--text-tertiary);
+}
+
+/* ===================================================================
+   Responsive — Tablet (≤1199px)
+   =================================================================== */
+
+@media (max-width: 1199px) {
+  :root {
+    --sidebar-w: 220px;
+    --editor-w: 300px;
+  }
+}
+
+/* ===================================================================
+   Responsive — Small tablet (≤999px)
+   =================================================================== */
+
+@media (max-width: 999px) {
+  :root {
+    --editor-w: 280px;
+  }
+
+  .sidebar {
+    width: 200px;
+    min-width: 200px;
+  }
+}
+
+/* ===================================================================
+   Responsive — Mobile (≤768px)
+   =================================================================== */
+
+@media (max-width: 768px) {
+  body {
+    overflow: auto;
+  }
+
+  .mobile-tabs {
+    display: block;
+  }
+
+  .app-body {
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .sidebar,
+  .editor-panel {
+    display: none;
+    width: 100%;
+    min-width: 100%;
+    border: none;
+  }
+
+  .sidebar--mobile-visible,
+  .editor-panel--mobile-visible {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .preview-panel {
+    display: none;
+  }
+
+  .preview-panel--mobile-visible {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .preview-panel__content {
+    padding: 16px;
+  }
+
+  .app-footer {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 8px 12px;
+    gap: 8px;
+  }
+
+  .app-footer__group {
+    gap: 8px;
+  }
+
+  .app-header__actions .btn span.desktop-only {
+    display: none;
+  }
+}
+
+/* ===================================================================
+   Responsive — Small mobile (≤480px)
+   =================================================================== */
+
+@media (max-width: 480px) {
+  .preview-panel__toolbar {
+    padding: 6px 12px;
+  }
+
+  .segmented__btn {
+    padding: 0 6px;
+    font-size: 11px;
+  }
+}
+
+/* ===================================================================
+   Utility classes
+   =================================================================== */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.desktop-only {
+  display: inline;
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+}
+
+.mobile-only {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .mobile-only {
+    display: inline !important;
+  }
+}
