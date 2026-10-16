@@ -1,8 +1,9 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { Content, RenderResult } from "../types";
 import { ThemeMode, MotionMode, DeviceMode } from "../state/store";
 import { GithubFrame } from "./GithubFrame";
 import { PhoneFrame } from "./PhoneFrame";
+import { GithubReadmePreview } from "../preview/GithubReadmePreview";
 
 interface PreviewStageProps {
   content: Content;
@@ -21,26 +22,8 @@ export const PreviewStage: React.FC<PreviewStageProps> = ({
   result,
 }) => {
   const [viewTab, setViewTab] = useState<"visual" | "markdown">("visual");
+  const [debugMode, setDebugMode] = useState<boolean>(false);
   const [copied, setCopied] = useState(false);
-
-  // Create Blob URLs with motion handling
-  const blobUrls = useMemo(() => {
-    if (!result) return {};
-    const map: Record<string, string> = {};
-
-    for (const [name, svgText] of Object.entries(result.files)) {
-      let finalSvg = svgText;
-      if (motion === "reduced") {
-        finalSvg = finalSvg.replace(
-          "</style>",
-          `* { animation: none !important; transition: none !important; }\n</style>`
-        );
-      }
-      const blob = new Blob([finalSvg], { type: "image/svg+xml;charset=utf-8" });
-      map[name] = URL.createObjectURL(blob);
-    }
-    return map;
-  }, [result, motion]);
 
   const handleCopyMarkdown = () => {
     if (!result?.readme) return;
@@ -66,210 +49,15 @@ export const PreviewStage: React.FC<PreviewStageProps> = ({
     );
   }
 
-  const getUrl = (prefix: string) => blobUrls[`${prefix}-${theme}.svg`];
-
-  const contentElements = (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: "10px",
-        width: "100%",
-      }}
-    >
-      {/* Hero */}
-      {getUrl("hero") && (
-        <div style={{ width: "100%" }}>
-          <img
-            src={getUrl("hero")}
-            alt={`${content.name} hero`}
-            style={{
-              width: "100%",
-              height: "auto",
-              display: "block",
-              shapeRendering: "geometricPrecision",
-              textRendering: "geometricPrecision",
-            }}
-          />
-        </div>
-      )}
-
-      {/* Buttons */}
-      <div
-        style={{
-          display: "flex",
-          gap: "8px",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          margin: "4px 0",
-        }}
-      >
-        {getUrl("btn-github") && (
-          <a href={content.github} target="_blank" rel="noreferrer" style={{ display: "inline-block" }}>
-            <img
-              src={getUrl("btn-github")}
-              alt="GitHub"
-              style={{ height: "38px", width: "auto", display: "block" }}
-            />
-          </a>
-        )}
-        {getUrl("btn-linkedin") && (
-          <a
-            href={content.linkedin}
-            target="_blank"
-            rel="noreferrer"
-            style={{ display: "inline-block" }}
-            onClick={(e) => {
-              if (content.linkedin.includes("YOUR-LINKEDIN")) {
-                e.preventDefault();
-                alert("Please update your LinkedIn URL in the Content editor!");
-              }
-            }}
-          >
-            <img
-              src={getUrl("btn-linkedin")}
-              alt="LinkedIn"
-              style={{ height: "38px", width: "auto", display: "block" }}
-            />
-          </a>
-        )}
-        {getUrl("btn-portfolio") && (
-          <a href={content.portfolio} target="_blank" rel="noreferrer" style={{ display: "inline-block" }}>
-            <img
-              src={getUrl("btn-portfolio")}
-              alt="Portfolio"
-              style={{ height: "38px", width: "auto", display: "block" }}
-            />
-          </a>
-        )}
-      </div>
-
-      {/* About */}
-      {getUrl("about") && (
-        <div style={{ width: "100%" }}>
-          <img
-            src={getUrl("about")}
-            alt="About"
-            style={{
-              width: "100%",
-              height: "auto",
-              display: "block",
-              shapeRendering: "geometricPrecision",
-              textRendering: "geometricPrecision",
-            }}
-          />
-        </div>
-      )}
-
-      {/* Skills */}
-      {getUrl("skills") && (
-        <div style={{ width: "100%" }}>
-          <img
-            src={getUrl("skills")}
-            alt="Skills"
-            style={{
-              width: "100%",
-              height: "auto",
-              display: "block",
-              shapeRendering: "geometricPrecision",
-              textRendering: "geometricPrecision",
-            }}
-          />
-        </div>
-      )}
-
-      {/* Projects Title */}
-      {getUrl("projects-title") && (
-        <div style={{ width: "100%" }}>
-          <img
-            src={getUrl("projects-title")}
-            alt="Selected Projects"
-            style={{
-              width: "100%",
-              height: "auto",
-              display: "block",
-              shapeRendering: "geometricPrecision",
-              textRendering: "geometricPrecision",
-            }}
-          />
-        </div>
-      )}
-
-      {/* Projects Cards Grid — matching GitHub centered inline layout */}
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          gap: device === "phone" ? "8px" : "1.3%",
-          width: "100%",
-          margin: "4px 0",
-        }}
-      >
-        {content.projects.map((proj) => {
-          const cardUrl = getUrl(`card-${proj.slug}`);
-          if (!cardUrl) return null;
-          return (
-            <a
-              key={proj.slug}
-              href={`${content.github}/${proj.slug}`}
-              target="_blank"
-              rel="noreferrer"
-              style={{
-                width: device === "phone" ? "48%" : "23.8%",
-                display: "block",
-                marginBottom: "6px",
-                textDecoration: "none",
-              }}
-            >
-              <img
-                src={cardUrl}
-                alt={proj.title}
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  display: "block",
-                  borderRadius: "4px",
-                  shapeRendering: "geometricPrecision",
-                  textRendering: "geometricPrecision",
-                }}
-              />
-            </a>
-          );
-        })}
-      </div>
-
-      {/* Footer */}
-      {getUrl("footer") && (
-        <div style={{ width: "100%" }}>
-          <img
-            src={getUrl("footer")}
-            alt="Footer"
-            style={{
-              width: "100%",
-              height: "auto",
-              display: "block",
-              shapeRendering: "geometricPrecision",
-              textRendering: "geometricPrecision",
-            }}
-          />
-        </div>
-      )}
-
-      {/* Subtitle footer links */}
-      <div style={{ fontSize: "12px", color: "var(--text-secondary)", marginTop: "6px", textAlign: "center" }}>
-        <sub>
-          <a href={content.portfolio} target="_blank" rel="noreferrer" style={{ color: "inherit", textDecoration: "none" }}>
-            {content.portfolio.replace(/^https?:\/\//, "")}
-          </a>{" "}
-          &nbsp;·&nbsp;{" "}
-          <a href={content.linkedin} target="_blank" rel="noreferrer" style={{ color: "inherit", textDecoration: "none" }}>
-            LinkedIn
-          </a>
-        </sub>
-      </div>
-    </div>
+  const readmePreviewElement = (
+    <GithubReadmePreview
+      readme={result.readme}
+      files={result.files}
+      theme={theme}
+      variables={content as unknown as Record<string, any>}
+      motion={motion}
+      debugMode={debugMode}
+    />
   );
 
   return (
@@ -283,21 +71,44 @@ export const PreviewStage: React.FC<PreviewStageProps> = ({
           width: "100%",
           maxWidth: "880px",
           marginBottom: "12px",
+          gap: "8px",
+          flexWrap: "wrap",
         }}
       >
-        <div className="segmented">
-          <button
-            className={`segmented__btn ${viewTab === "visual" ? "segmented__btn--active" : ""}`}
-            onClick={() => setViewTab("visual")}
-          >
-            Live GitHub View
-          </button>
-          <button
-            className={`segmented__btn ${viewTab === "markdown" ? "segmented__btn--active" : ""}`}
-            onClick={() => setViewTab("markdown")}
-          >
-            README.md Code
-          </button>
+        <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+          <div className="segmented">
+            <button
+              className={`segmented__btn ${viewTab === "visual" ? "segmented__btn--active" : ""}`}
+              onClick={() => setViewTab("visual")}
+            >
+              Live GitHub View
+            </button>
+            <button
+              className={`segmented__btn ${viewTab === "markdown" ? "segmented__btn--active" : ""}`}
+              onClick={() => setViewTab("markdown")}
+            >
+              README.md Code
+            </button>
+          </div>
+
+          {viewTab === "visual" && (
+            <div className="segmented">
+              <button
+                className={`segmented__btn ${!debugMode ? "segmented__btn--active" : ""}`}
+                onClick={() => setDebugMode(false)}
+                title="Standard GitHub rendering mode"
+              >
+                GitHub Mode
+              </button>
+              <button
+                className={`segmented__btn ${debugMode ? "segmented__btn--active" : ""}`}
+                onClick={() => setDebugMode(true)}
+                title="Developer debug rendering mode"
+              >
+                Debug Rendering
+              </button>
+            </div>
+          )}
         </div>
 
         {viewTab === "markdown" && (
@@ -327,13 +138,12 @@ export const PreviewStage: React.FC<PreviewStageProps> = ({
           {result.readme}
         </div>
       ) : device === "phone" ? (
-        <PhoneFrame theme={theme}>{contentElements}</PhoneFrame>
+        <PhoneFrame theme={theme}>{readmePreviewElement}</PhoneFrame>
       ) : (
         <GithubFrame handle={content.handle} theme={theme}>
-          {contentElements}
+          {readmePreviewElement}
         </GithubFrame>
       )}
     </div>
   );
 };
-

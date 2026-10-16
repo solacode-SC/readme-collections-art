@@ -1,55 +1,57 @@
 import { StyleModule } from "../types";
-import { swirlStyle } from "./swirl";
-import { moongateStyle } from "./moongate";
-import { gardenStyle } from "./garden";
-import { phoenixStyle } from "./phoenix";
-import { andalusStyle } from "./andalus";
-import { codexStyle } from "./codex";
-import { inkscrollStyle } from "./inkscroll";
-import { frostStyle } from "./frost";
-import { lapisStyle } from "./lapis";
-import { canopyStyle } from "./canopy";
-import { citadelStyle } from "./citadel";
-import { lotusStyle } from "./lotus";
-import { ghostStyle } from "./ghost";
-import { isekaiStyle } from "./isekai";
-import { vangoghStyle } from "./vangogh";
-import { floralStyle } from "./floral";
-import { treeStyle } from "./tree";
+import { AUTHENTIC_STYLES, getAuthenticStyleById } from "./authenticTemplates";
+
+// Procedural fallback modules
 import { constellationStyle } from "./constellation";
 import { terminalStyle } from "./terminal";
 import { qamariyaStyle } from "./qamariya";
-import { lilypondStyle } from "./lilypond";
 import { blueprintStyle } from "./blueprint";
 import { helixStyle } from "./helix";
 
-export const STYLES: StyleModule[] = [
-  swirlStyle,
-  moongateStyle,
-  gardenStyle,
-  phoenixStyle,
-  andalusStyle,
-  codexStyle,
-  inkscrollStyle,
-  frostStyle,
-  lapisStyle,
-  canopyStyle,
-  citadelStyle,
-  lotusStyle,
-  ghostStyle,
-  isekaiStyle,
-  vangoghStyle,
-  floralStyle,
-  treeStyle,
+// Other styles kept for compatibility
+const ADDITIONAL_STYLES: StyleModule[] = [
   constellationStyle,
   terminalStyle,
   qamariyaStyle,
-  lilypondStyle,
   blueprintStyle,
   helixStyle,
 ];
 
-export function getStyleById(id: string): StyleModule {
-  return STYLES.find((s) => s.id === id) || STYLES[0];
-}
+// Combine: authentic templates first, then any extra procedural styles
+export const STYLES: StyleModule[] = [
+  ...AUTHENTIC_STYLES,
+  ...ADDITIONAL_STYLES.filter((s) => !AUTHENTIC_STYLES.some((a) => a.id === s.id)),
+];
 
+const ALIASES: Record<string, string> = {
+  phoenix: "citadel",
+  "solacode-readme": "citadel",
+  "solacode-lotus-readme": "lotus",
+  "solacode-readme-frost": "frost",
+  "solacode-isekai-readme": "isekai",
+  "solacode-ghost-readme": "ghost",
+  "solacode-readme-lapis": "lapis",
+  "solacode-readme-canopy": "canopy",
+  "solacode-readme-andalus": "andalus",
+  "solayman-tree-readme": "tree",
+  "solayman-floral-readme-v2": "floral",
+  "solayman-vangogh-readme": "vangogh",
+  "profile-readme-swirl": "swirl",
+  "profile-readme-moongate": "moongate",
+  "profile-readme-inkscroll": "inkscroll",
+  "profile-readme-garden": "garden",
+  "profile-readme-codex": "codex",
+  "profile-readme-andalusn": "andalusn",
+  "profile-readme-red": "red",
+  "profile-readme": "classic",
+  jjjjj: "lilypond",
+};
+
+export function getStyleById(id: string): StyleModule {
+  const targetId = ALIASES[id] || id;
+  const authentic = getAuthenticStyleById(targetId);
+  if (authentic) return authentic;
+
+  const found = STYLES.find((s) => s.id === targetId || s.id === id);
+  return found || STYLES[0];
+}

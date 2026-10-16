@@ -46,8 +46,30 @@ export async function createStyleZip(
 
   const assetsFolder = folder.folder("assets");
   if (assetsFolder) {
-    for (const [name, svg] of Object.entries(result.files)) {
-      assetsFolder.file(name, svg);
+    for (const [name, contentOrUrl] of Object.entries(result.files)) {
+      const cleanName = name.replace(/^(\.\/)?assets\//, "");
+      if (assetsFolder.file(cleanName)) continue;
+
+      if (typeof contentOrUrl === "string") {
+        if (contentOrUrl.startsWith("<svg") || contentOrUrl.startsWith("<?xml")) {
+          assetsFolder.file(cleanName, contentOrUrl);
+        } else if (contentOrUrl.startsWith("data:")) {
+          const parts = contentOrUrl.split(",");
+          if (contentOrUrl.includes(";base64,")) {
+            assetsFolder.file(cleanName, parts[1], { base64: true });
+          } else {
+            assetsFolder.file(cleanName, decodeURIComponent(parts[1] || ""));
+          }
+        } else {
+          try {
+            const resp = await fetch(contentOrUrl);
+            const blob = await resp.blob();
+            assetsFolder.file(cleanName, blob);
+          } catch (e) {
+            console.error("Failed to fetch asset for zip:", contentOrUrl, e);
+          }
+        }
+      }
     }
   }
 
@@ -79,8 +101,30 @@ export async function createAllStylesZip(
       sFolder.file("ARTWORK-NOTES.txt", generateArtworkNotesTxt(s));
       const sAssets = sFolder.folder("assets");
       if (sAssets) {
-        for (const [name, svg] of Object.entries(res.files)) {
-          sAssets.file(name, svg);
+        for (const [name, contentOrUrl] of Object.entries(res.files)) {
+          const cleanName = name.replace(/^(\.\/)?assets\//, "");
+          if (sAssets.file(cleanName)) continue;
+
+          if (typeof contentOrUrl === "string") {
+            if (contentOrUrl.startsWith("<svg") || contentOrUrl.startsWith("<?xml")) {
+              sAssets.file(cleanName, contentOrUrl);
+            } else if (contentOrUrl.startsWith("data:")) {
+              const parts = contentOrUrl.split(",");
+              if (contentOrUrl.includes(";base64,")) {
+                sAssets.file(cleanName, parts[1], { base64: true });
+              } else {
+                sAssets.file(cleanName, decodeURIComponent(parts[1] || ""));
+              }
+            } else {
+              try {
+                const resp = await fetch(contentOrUrl);
+                const blob = await resp.blob();
+                sAssets.file(cleanName, blob);
+              } catch (e) {
+                console.error("Failed to fetch asset for zip:", contentOrUrl, e);
+              }
+            }
+          }
         }
       }
     }

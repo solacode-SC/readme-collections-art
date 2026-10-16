@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 90" width="1100" height="90">
+<rect width="1100" height="90" rx="10" fill="#06132D"/>
+<path d="M70 45H1030" stroke="#557CC1" opacity=".45"/>
+<g fill="#F1CD72">
+ <circle cx="360" cy="45" r="3"><animate attributeName="r" values="2;6;2" dur="2.2s" repeatCount="indefinite"/></circle>
+ <circle cx="550" cy="45" r="4"><animate attributeName="r" values="3;8;3" dur="2.7s" repeatCount="indefinite"/></circle>
+ <circle cx="740" cy="45" r="3"><animate attributeName="r" values="2;6;2" dur="2s" repeatCount="indefinite"/></circle>
+</g>
+<path d="M535 35l15 10-15 10-15-10z" fill="none" stroke="#F1CD72">
+ <animateTransform attributeName="transform" type="rotate" from="0 550 45" to="360 550 45" dur="8s" repeatCount="indefinite"/>
+</path>
+</svg>

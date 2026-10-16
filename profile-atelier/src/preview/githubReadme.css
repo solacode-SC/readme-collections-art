@@ -1,0 +1,302 @@
+@import "github-markdown-css/github-markdown.css";
+
+/* Base container: inside GitHubFrame/PhoneFrame */
+.github-readme-preview {
+  box-sizing: border-box;
+  min-width: 200px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  transition: color 0.2s ease;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+/* Ensure markdown-body seamlessly inherits background */
+.github-readme-preview.markdown-body {
+  background-color: transparent !important;
+  font-family: inherit;
+}
+
+/* Explicit Light Theme Variables */
+.github-readme-preview.theme-light,
+.github-readme-preview[data-theme="light"],
+[data-theme="light"] .github-readme-preview {
+  color-scheme: light;
+  --color-canvas-default: #ffffff;
+  --color-canvas-subtle: #f6f8fa;
+  --color-fg-default: #1f2328;
+  --color-fg-muted: #656d76;
+  --color-accent-fg: #0969da;
+  --color-border-default: #d0d7de;
+  --color-border-muted: #d0d7de;
+  color: #1f2328;
+}
+
+.github-readme-preview.theme-light a,
+.github-readme-preview[data-theme="light"] a {
+  color: #0969da;
+}
+
+.github-readme-preview.theme-light hr,
+.github-readme-preview[data-theme="light"] hr {
+  background-color: #d0d7de;
+}
+
+/* Explicit Dark Theme Variables */
+.github-readme-preview.theme-dark,
+.github-readme-preview[data-theme="dark"],
+[data-theme="dark"] .github-readme-preview {
+  color-scheme: dark;
+  --color-canvas-default: #0d1117;
+  --color-canvas-subtle: #161b22;
+  --color-fg-default: #f0f6fc;
+  --color-fg-muted: #848d97;
+  --color-accent-fg: #4493f8;
+  --color-border-default: #30363d;
+  --color-border-muted: #21262d;
+  color: #f0f6fc;
+}
+
+.github-readme-preview.theme-dark a,
+.github-readme-preview[data-theme="dark"] a {
+  color: #4493f8;
+}
+
+.github-readme-preview.theme-dark hr,
+.github-readme-preview[data-theme="dark"] hr {
+  background-color: #30363d;
+}
+
+.github-readme-preview.theme-dark blockquote,
+.github-readme-preview[data-theme="dark"] blockquote {
+  border-left-color: #30363d;
+  color: #848d97;
+}
+
+.github-readme-preview.theme-dark table th,
+.github-readme-preview.theme-dark table td,
+.github-readme-preview[data-theme="dark"] table th,
+.github-readme-preview[data-theme="dark"] table td {
+  border-color: #30363d;
+}
+
+.github-readme-preview.theme-dark table tr,
+.github-readme-preview[data-theme="dark"] table tr {
+  background-color: #0d1117;
+  border-top-color: #21262d;
+}
+
+.github-readme-preview.theme-dark table tr:nth-child(2n),
+.github-readme-preview[data-theme="dark"] table tr:nth-child(2n) {
+  background-color: #161b22;
+}
+
+.github-readme-preview.theme-dark pre,
+.github-readme-preview.theme-dark code,
+.github-readme-preview[data-theme="dark"] pre,
+.github-readme-preview[data-theme="dark"] code {
+  background-color: #161b22;
+  color: #e6edf3;
+}
+
+/* Picture Element: display contents ensures percentage widths resolve against parent block */
+.github-readme-preview picture {
+  display: contents;
+}
+
+/* General images */
+.github-readme-preview img {
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+
+/* Full-width banners (hero, about, skills, projects-title, footer, divider) */
+.github-readme-preview img[width="100%"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Project Cards: 4-column authentic GitHub centered grid */
+.github-readme-preview a:has(img[width="24%"]),
+.github-readme-preview a:has(picture img[width="24%"]) {
+  display: inline-block;
+  width: 23.8%;
+  max-width: 23.8%;
+  vertical-align: top;
+  text-decoration: none;
+  margin: 4px 0.5%;
+  line-height: 0;
+  box-sizing: border-box;
+}
+
+.github-readme-preview a:has(img[width="24%"]) img,
+.github-readme-preview a:has(picture img[width="24%"]) img {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto;
+  display: block;
+  box-sizing: border-box;
+}
+
+/* Standalone img[width="24%"] (not inside an <a>) */
+.github-readme-preview > p img[width="24%"],
+.github-readme-preview > div img[width="24%"],
+.github-readme-preview img[width="24%"] {
+  width: 23.8% !important;
+  max-width: 23.8% !important;
+  height: auto;
+  display: inline-block;
+  vertical-align: top;
+  margin: 4px 0.5%;
+  box-sizing: border-box;
+}
+
+/* Action buttons (GitHub, LinkedIn, Portfolio) */
+.github-readme-preview a:has(img[alt*="GitHub"]),
+.github-readme-preview a:has(img[alt*="LinkedIn"]),
+.github-readme-preview a:has(img[alt*="Portfolio"]),
+.github-readme-preview a:has(img[alt*="portfolio"]),
+.github-readme-preview a:has(img[src*="btn-"]),
+.github-readme-preview a:has(img[width="150"]) {
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
+  margin: 2px 2px;
+  line-height: 0;
+}
+
+.github-readme-preview a:has(img[alt*="GitHub"]) img,
+.github-readme-preview a:has(img[alt*="LinkedIn"]) img,
+.github-readme-preview a:has(img[alt*="Portfolio"]) img,
+.github-readme-preview a:has(img[alt*="portfolio"]) img,
+.github-readme-preview a:has(img[src*="btn-"]) img {
+  max-width: 160px;
+  height: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.github-readme-preview img[width="150"] {
+  width: 150px !important;
+  max-width: 150px !important;
+  height: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.github-readme-preview img[src*="shields.io"] {
+  display: inline-block;
+  vertical-align: middle;
+  height: auto;
+  max-height: 28px;
+}
+
+/* Center aligned blocks */
+.github-readme-preview [align="center"] {
+  text-align: center;
+}
+
+/* Paragraph spacing for README layout */
+.github-readme-preview p {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.github-readme-preview p:has(picture),
+.github-readme-preview p:has(img[width="100%"]) {
+  margin-bottom: 8px;
+}
+
+/* Subtitle and footer links */
+.github-readme-preview sub {
+  font-size: 12px;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+.github-readme-preview sub a {
+  text-decoration: none;
+}
+
+.github-readme-preview sub a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile & PhoneFrame Responsiveness */
+@media (max-width: 640px) {
+  .github-readme-preview a:has(img[width="24%"]),
+  .github-readme-preview a:has(picture img[width="24%"]) {
+    width: 48% !important;
+    max-width: 48% !important;
+    margin: 4px 0.8% !important;
+  }
+  .github-readme-preview img[width="24%"] {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* In PhoneFrame (contained in ~370px screen) */
+[data-device="phone"] .github-readme-preview a:has(img[width="24%"]),
+[data-device="phone"] .github-readme-preview a:has(picture img[width="24%"]),
+.phone-screen .github-readme-preview a:has(img[width="24%"]),
+.phone-screen .github-readme-preview a:has(picture img[width="24%"]) {
+  width: 48% !important;
+  max-width: 48% !important;
+  margin: 3px 0.8% !important;
+}
+
+[data-device="phone"] .github-readme-preview img[width="24%"],
+.phone-screen .github-readme-preview img[width="24%"] {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Developer Debug Overlay Styles */
+.readme-debug-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 8px 14px;
+  background-color: rgba(30, 41, 59, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12px;
+  color: #cbd5e1;
+}
+
+.readme-debug-warning-banner {
+  margin-top: 8px;
+  padding: 10px 14px;
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 6px;
+  color: #f87171;
+  font-size: 12px;
+}
+
+.readme-debug-warning-banner h4 {
+  margin: 0 0 6px 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ef4444;
+}
+
+.readme-debug-warning-banner code {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2px 4px;
+  border-radius: 4px;
+  color: #fca5a5;
+}
+
+.github-readme-preview--debug {
+  outline: 2px dashed rgba(245, 158, 11, 0.5);
+  outline-offset: 4px;
+}

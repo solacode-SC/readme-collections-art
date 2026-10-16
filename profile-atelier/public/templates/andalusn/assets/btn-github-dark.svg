@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 40" width="150" height="40" font-family="Georgia,'Iowan Old Style','Palatino Linotype','Book Antiqua','DejaVu Serif',serif"><defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1c0b14"/><stop offset="1" stop-color="#0d0609"/></linearGradient>
+<linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#dcb85e"/><stop offset=".5" stop-color="#f3dc92"/><stop offset="1" stop-color="#dcb85e"/></linearGradient>
+<linearGradient id="shim" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".4"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<radialGradient id="warm"><stop offset="0" stop-color="#ffd27a" stop-opacity=".95"/><stop offset=".45" stop-color="#ffb347" stop-opacity=".35"/><stop offset="1" stop-color="#ffb347" stop-opacity="0"/></radialGradient>
+<radialGradient id="lightg"><stop offset="0" stop-color="#ff9aa8" stop-opacity=".9"/><stop offset="1" stop-color="#ff9aa8" stop-opacity="0"/></radialGradient>
+<filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="6"/><feColorMatrix values="0 0 0 0 .95  0 0 0 0 .8  0 0 0 0 .6  0 0 0 .08 0"/></filter>
+<pattern id="zel" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="#145a62"/>
+<g stroke="#f3dc92" stroke-width=".9" stroke-linejoin="round"><polygon points="29.2,29.2 10.8,29.2 10.8,10.8 29.2,10.8" fill="#e23c52"/><polygon points="20,33 7,20 20,7 33,20" fill="#e23c52"/></g>
+<circle cx="20" cy="20" r="4" fill="#f3dc92"/>
+<g fill="#dcb85e" stroke="#f3dc92" stroke-width=".6"><path d="M0 -5L5 0L0 5L-5 0Z" transform="translate(0 0)"/><path d="M0 -5L5 0L0 5L-5 0Z" transform="translate(40 0)"/><path d="M0 -5L5 0L0 5L-5 0Z" transform="translate(0 40)"/><path d="M0 -5L5 0L0 5L-5 0Z" transform="translate(40 40)"/></g></pattern>
+<pattern id="zel2" width="28" height="28" patternUnits="userSpaceOnUse"><g fill="none" stroke="#dcb85e" stroke-opacity=".5" stroke-width=".8"><polygon points="20.4,20.4 7.6,20.4 7.6,7.6 20.4,7.6"/><polygon points="14,23 5,14 14,5 23,14"/><circle cx="14" cy="14" r="2.4"/></g></pattern>
+</defs><path d="M12 1H138L149 20L138 39H12L1 20Z" fill="#26101a" stroke="url(#gold)" stroke-width="2"/><g fill="#e23c52" stroke="#dcb85e" stroke-width="0.8" stroke-linejoin="round" ><polygon points="29.7,25.7 18.3,25.7 18.3,14.3 29.7,14.3"/><polygon points="24,28 16,20 24,12 32,20"/></g><text x="40" y="24.5" font-size="12" letter-spacing="2" fill="#f7ead2">GITHUB</text></svg>

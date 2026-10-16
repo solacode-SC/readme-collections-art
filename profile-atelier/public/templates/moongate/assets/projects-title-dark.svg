@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 900 60" width="900" height="60" font-family="'JetBrains Mono','SF Mono',SFMono-Regular,Consolas,Menlo,monospace"><style>
+.spin{transform-box:fill-box;transform-origin:center;animation:spin 90s linear infinite}
+.spin.r{animation-direction:reverse;animation-duration:140s}
+.spin.f{animation-duration:46s}
+@keyframes spin{to{transform:rotate(360deg)}}
+.tw{transform-box:fill-box;transform-origin:center;animation:tw 4s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.25;transform:scale(.6)}50%{opacity:1;transform:scale(1.15)}}
+.glow{animation:glow 5s ease-in-out infinite}
+@keyframes glow{0%,100%{opacity:.45}50%{opacity:1}}
+.flick{animation:fl 2.8s ease-in-out infinite}
+@keyframes fl{0%,100%{opacity:.7}30%{opacity:1}55%{opacity:.55}80%{opacity:.95}}
+.ff{animation:ff linear infinite;opacity:0}
+@keyframes ff{0%{opacity:0;transform:translate(0,0)}15%{opacity:1}85%{opacity:.9}100%{opacity:0;transform:translate(16px,-80px)}}
+.fall{animation:fall linear infinite}
+@keyframes fall{from{transform:translateY(-30px)}to{transform:translateY(520px)}}
+.sway{transform-box:fill-box;transform-origin:center;animation:sway ease-in-out infinite alternate}
+@keyframes sway{from{transform:translateX(-22px) rotate(-40deg)}to{transform:translateX(22px) rotate(40deg)}}
+.breathe{transform-box:fill-box;transform-origin:center;animation:br 30s ease-in-out infinite alternate}
+@keyframes br{from{transform:scale(1)}to{transform:scale(1.08)}}
+.dots{stroke-dasharray:.1 16;stroke-linecap:round;animation:run 12s linear infinite}
+@keyframes run{to{stroke-dashoffset:-161}}
+.cursor{animation:cur 1.1s steps(1) infinite}
+@keyframes cur{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.spin,.tw,.glow,.flick,.ff,.fall,.sway,.breathe,.dots,.cursor{animation:none}.ff{opacity:.6}}
+</style><defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#070d3a"/><stop offset="1" stop-color="#0c1a66"/></linearGradient>
+<radialGradient id="warm"><stop offset="0" stop-color="#ffd27a" stop-opacity=".95"/><stop offset=".4" stop-color="#ffb347" stop-opacity=".4"/><stop offset="1" stop-color="#ffb347" stop-opacity="0"/></radialGradient>
+<radialGradient id="aura"><stop offset=".55" stop-color="#ff7a52" stop-opacity="0"/><stop offset=".8" stop-color="#ff7a52" stop-opacity=".22"/><stop offset="1" stop-color="#ff7a52" stop-opacity="0"/></radialGradient>
+<linearGradient id="nm" x1="0" x2="1"><stop offset="0" stop-color="#eef0ff"/><stop offset="1" stop-color="#f5c15a"/></linearGradient>
+</defs><rect width="900" height="60" fill="url(#bg)"/><path class="tw" d="M558.2 36.9Q558.2 40.6 561.9 40.6Q558.2 40.6 558.2 44.3Q558.2 40.6 554.4 40.6Q558.2 40.6 558.2 36.9Z" fill="#ffffff" opacity="0.9241026276996727" style="animation-delay:-4.4s;animation-duration:4.4s"/><path class="tw" d="M821.6 6.4Q821.6 9.3 824.6 9.3Q821.6 9.3 821.6 12.2Q821.6 9.3 818.7 9.3Q821.6 9.3 821.6 6.4Z" fill="#ffffff" opacity="0.9245105226492412" style="animation-delay:-3.9s;animation-duration:3.9s"/><path class="tw" d="M802.8 10.1Q802.8 13 805.7 13Q802.8 13 802.8 15.9Q802.8 13 799.9 13Q802.8 13 802.8 10.1Z" fill="#ffffff" opacity="0.6109577746789236" style="animation-delay:-3.3s;animation-duration:3.3s"/><path class="tw" d="M515.1 6.3Q515.1 8.6 517.4 8.6Q515.1 8.6 515.1 10.9Q515.1 8.6 512.7 8.6Q515.1 8.6 515.1 6.3Z" fill="#ffffff" opacity="0.6257670647049997" style="animation-delay:-5.5s;animation-duration:5.5s"/><path class="tw" d="M683.8 11.3Q683.8 15 687.6 15Q683.8 15 683.8 18.7Q683.8 15 680.1 15Q683.8 15 683.8 11.3Z" fill="#ffffff" opacity="0.5624453382795064" style="animation-delay:-3.7s;animation-duration:3.7s"/><path class="tw" d="M121.5 4.2Q121.5 8.1 125.4 8.1Q121.5 8.1 121.5 12Q121.5 8.1 117.6 8.1Q121.5 8.1 121.5 4.2Z" fill="#ffffff" opacity="0.594255372122803" style="animation-delay:-1.3s;animation-duration:4.3s"/><path class="tw" d="M874.5 43.9Q874.5 46.4 877 46.4Q874.5 46.4 874.5 48.9Q874.5 46.4 872 46.4Q874.5 46.4 874.5 43.9Z" fill="#ffffff" opacity="0.9326650950275375" style="animation-delay:-3.2s;animation-duration:3.2s"/><path class="tw" d="M606.5 13Q606.5 17 610.5 17Q606.5 17 606.5 21.1Q606.5 17 602.4 17Q606.5 17 606.5 13Z" fill="#ffffff" opacity="0.8107888734981087" style="animation-delay:-5.8s;animation-duration:5.8s"/><path class="tw" d="M796.5 18.5Q796.5 21.1 799.2 21.1Q796.5 21.1 796.5 23.8Q796.5 21.1 793.8 21.1Q796.5 21.1 796.5 18.5Z" fill="#ffffff" opacity="0.5746802257083855" style="animation-delay:-0.9s;animation-duration:3.9s"/><path class="tw" d="M67.3 18Q67.3 21.3 70.6 21.3Q67.3 21.3 67.3 24.5Q67.3 21.3 64.1 21.3Q67.3 21.3 67.3 18Z" fill="#ffffff" opacity="0.5015224037184606" style="animation-delay:-4.1s;animation-duration:4.1s"/><path class="tw" d="M307.3 17.9Q307.3 21.6 311.1 21.6Q307.3 21.6 307.3 25.4Q307.3 21.6 303.6 21.6Q307.3 21.6 307.3 17.9Z" fill="#ffffff" opacity="0.7163353339835175" style="animation-delay:-1.9s;animation-duration:4.9s"/><path class="tw" d="M433.5 37.1Q433.5 39 435.4 39Q433.5 39 433.5 40.9Q433.5 39 431.5 39Q433.5 39 433.5 37.1Z" fill="#ffffff" opacity="0.9387948034149058" style="animation-delay:-0.1s;animation-duration:3.1s"/><path class="tw" d="M669.8 43.3Q669.8 45.2 671.7 45.2Q669.8 45.2 669.8 47Q669.8 45.2 668 45.2Q669.8 45.2 669.8 43.3Z" fill="#ffffff" opacity="0.8544822367911953" style="animation-delay:-2.2s;animation-duration:5.2s"/><path class="tw" d="M519.1 6.5Q519.1 8.4 521 8.4Q519.1 8.4 519.1 10.3Q519.1 8.4 517.2 8.4Q519.1 8.4 519.1 6.5Z" fill="#ffffff" opacity="0.5814137695779715" style="animation-delay:-5.7s;animation-duration:5.7s"/><path class="tw" d="M60 26Q60 34 68 34Q60 34 60 42Q60 34 52 34Q60 34 60 26Z" fill="#f5c15a" opacity="1" style="animation-delay:-1.0s;animation-duration:4.0s"/><text x="82" y="38" font-size="12" letter-spacing="2" fill="#9fb0ee">04 /</text><text x="122" y="38" font-size="12" font-weight="700" letter-spacing="2" fill="#eef0ff">SELECTED PROJECTS</text><path d="M.5 0V60M899.5 0V60" stroke="#2a3da6"/></svg>

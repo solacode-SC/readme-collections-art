@@ -1,5 +1,6 @@
 import React from "react";
 import { ThemeMode } from "../state/store";
+import { BookOpen, Pencil } from "lucide-react";
 
 interface GithubFrameProps {
   handle: string;
@@ -9,10 +10,11 @@ interface GithubFrameProps {
 
 export const GithubFrame: React.FC<GithubFrameProps> = ({ handle, theme, children }) => {
   const isDark = theme === "dark";
-  const bg = isDark ? "#0D1117" : "#FFFFFF";
-  const fg = isDark ? "#E6EDF3" : "#1F2328";
-  const border = isDark ? "#30363D" : "#D0D7DE";
-  const boxBg = isDark ? "#161B22" : "#F6F8FA";
+  const bg = isDark ? "#0d1117" : "#ffffff";
+  const fg = isDark ? "#f0f6fc" : "#1f2328";
+  const border = isDark ? "#30363d" : "#d0d7de";
+  const boxBg = isDark ? "#161b22" : "#f6f8fa";
+  const muted = isDark ? "#848d97" : "#656d76";
 
   return (
     <div
@@ -23,13 +25,16 @@ export const GithubFrame: React.FC<GithubFrameProps> = ({ handle, theme, childre
         backgroundColor: bg,
         color: fg,
         border: `1px solid ${border}`,
-        borderRadius: "8px",
+        borderRadius: "6px",
         overflow: "hidden",
-        boxShadow: "0 4px 14px rgba(0,0,0,0.06)",
-        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif',
+        boxShadow: isDark
+          ? "0 4px 20px rgba(0,0,0,0.45)"
+          : "0 4px 20px rgba(0,0,0,0.06)",
+        fontFamily:
+          '-apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif',
       }}
     >
-      {/* GitHub Repo Header */}
+      {/* GitHub Profile README Header */}
       <div
         style={{
           display: "flex",
@@ -38,29 +43,32 @@ export const GithubFrame: React.FC<GithubFrameProps> = ({ handle, theme, childre
           padding: "10px 16px",
           backgroundColor: boxBg,
           borderBottom: `1px solid ${border}`,
+          userSelect: "none",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "13px" }}>
-          <span style={{ fontWeight: 600 }}>{handle}</span>
-          <span style={{ opacity: 0.5 }}>/</span>
-          <span>README.md</span>
+          <BookOpen size={15} color={muted} />
+          <span style={{ fontWeight: 600, color: fg }}>{handle}</span>
+          <span style={{ color: muted }}>/</span>
+          <span style={{ color: fg }}>README.md</span>
         </div>
-        <span
+        <div
+          title="Edit README"
           style={{
-            fontSize: "11px",
-            padding: "2px 8px",
-            borderRadius: "999px",
-            border: `1px solid ${border}`,
-            color: fg,
-            opacity: 0.8,
+            display: "flex",
+            alignItems: "center",
+            cursor: "pointer",
+            padding: "4px",
+            borderRadius: "4px",
+            color: muted,
           }}
         >
-          Public
-        </span>
+          <Pencil size={13} />
+        </div>
       </div>
 
       {/* GitHub README Markdown Body */}
-      <div style={{ padding: "32px", overflowX: "auto" }}>
+      <div style={{ padding: "28px 32px", overflowX: "auto" }}>
         {children}
       </div>
     </div>

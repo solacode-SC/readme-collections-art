@@ -37,6 +37,8 @@ export function pic(name: string, alt: string, width?: string, extraStyle?: stri
   const sAttr = extraStyle ? ` style="${extraStyle}"` : "";
   return `<picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/${name}-dark.svg">
-  <img src="assets/${name}-light.svg" alt="${escapeXml(alt)}"${wAttr}${sAttr}>
+  <source media="(prefers-color-scheme: light)" srcset="assets/${name}-light.svg">
+  <img alt="${escapeXml(alt)}" src="assets/${name}-dark.svg"${wAttr}${sAttr}>
 </picture>`;
 }
+

@@ -27,6 +27,8 @@ export const PhoneFrame: React.FC<PhoneFrameProps> = ({ theme, children }) => {
     >
       {/* Inner Screen */}
       <div
+        className="phone-screen"
+        data-device="phone"
         style={{
           width: "100%",
           height: "100%",
